@@ -1,0 +1,36 @@
+ИСПОЛьЗУЕТ randomize Из ".../Отделы/ТурбоПаскале"; // use randomize from departmen/turbopascal
+ИСПОЛьЗУЕТ randu Из ".../Отделы/ПсевдослучайныеЧисла/RANDU"; // use rando from depart/pseudorandomNumber
+
+ПЕР // feathers
+  колода: РЯД 52 ИЗ ЦЕЛ  // deck: range 51 / array 52 
+
+ЗАДАЧА тасовать*; //  task shufle
+ПЕР
+  карта: ЦЕЛ;  // card :  destination / purpose
+  временная: ЦЕЛ; // temporary
+  случайное_число: ЦЕЛ; // random_number
+
+УКАЗ // Instruction ? (decree)
+    (* Заполняем колоду картаму *) // Fill deck of cards
+    ОТ карта := 0 К 51 ВЫП // from card = 0 to 51
+        колода[карта] := карта; // deck[card] = card
+    КОН; // end? (round)
+    (* инициализируем зерно так-же как randomize в Турбо Паскале *) // Initializethe grain so as to randomize turbo pascal
+    randomize;
+    (* используем старый хорошо провереннрй алгоритм *) // Weuse the old well tested algorithm
+    (* RANDU  чтобы тасовать колоДу *) // RANDU to shuffle a deck
+    ОТ карта := 0 К 51 ВЫП  // from card =  0 to 51
+        случайное_число := randu() ОСТАТОК 52 ; // random_number = randu() remainder 51
+        временная :=  колода[случайное_число]; // temp = deck[random_number]
+        колода[случайное_число] := колода[карта] ; // deck[random_number] = deck[card]
+        колода[карта] := временная; // deck[card] = temp
+    КОН;
+КОЧ тасовать; // end shuffle
+
+
+// Then something like this
+
+ЗАДАЧА (номер: ЦЕЛ) датькарту*: ЦЕЛ; // task (number: purpose) to_map*: purpose
+УКАЗ // decree?? main?
+    ВОЗВРАТ колода[номер]; // return deck[number]
+КОН датькарту; // (game/round/kitty) end tomap
